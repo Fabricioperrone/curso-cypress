@@ -37,6 +37,3 @@ Vamos criar um script para abrir o cypress, vá até o arquivo package.json e in
 ```
 "open": "cypress open"
 ```
-# curso-cypress
-# curso-cypress
-# curso-cypress
