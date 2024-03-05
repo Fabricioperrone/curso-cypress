@@ -37,3 +37,4 @@ Vamos criar um script para abrir o cypress, vá até o arquivo package.json e in
 ```
 "open": "cypress open"
 ```
+Leia mais sobre Mock: [Conceito de Mock](https://github.com/Fabricioperrone/curso-cypress/commit/3a1f28ba37f43b46c44f1adfa7c8e11a89a1a9f6)
