@@ -41,7 +41,7 @@ describe('Work with alerts', () => {
         })
         cy.get('#confirm').click()
     })
-    it.only('Prompt', () => {
+    it('Prompt', () => {
         cy.window().then(win => {
             cy.stub(win, 'prompt').returns('42')
         })
@@ -52,5 +52,24 @@ describe('Work with alerts', () => {
             expect(msg).to.be.equal(':D')
         })
         cy.get('#prompt').click()
+    })
+    it.only('Validar mensagens', () => {
+        const stub = cy.stub().as('alerta')// dando um nome -Alias
+        cy.on('window:alert', stub)
+        cy.get('#formCadastrar').click()
+            .then(() => expect(stub.getCall(0)).to.be.calledWith('Nome eh obrigatorio'))
+
+        cy.get('#formNome').type('Wagner')
+        cy.get('#formCadastrar').click()
+            .then(() => expect(stub.getCall(1)).to.be.calledWith('Sobrenome eh obrigatorio'))
+
+        cy.get('[data-cy="dataSobrenome"]').type('Aquino')
+        cy.get('#formCadastrar').click()
+            .then(() => expect(stub.getCall(2)).to.be.calledWith('Sexo eh obrigatorio'))
+        
+        cy.get('#formSexoMasc').click()
+        cy.get('#formCadastrar').click()
+
+        cy.get('#resultado > :nth-child(1)').should('contain', 'Cadastrado')
     })
 })
