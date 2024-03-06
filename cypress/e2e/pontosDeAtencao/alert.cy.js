@@ -70,6 +70,6 @@ describe('Work with alerts', () => {
         cy.get('#formSexoMasc').click()
         cy.get('#formCadastrar').click()
 
-        cy.get('#resultado > :nth-child(1)').should('contain', 'Cadastrado')
+        cy.get('#resultado > :nth-child(1)').should('contain', 'Cadastrado!')
     })
 })
