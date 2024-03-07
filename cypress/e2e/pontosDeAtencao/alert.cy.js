@@ -8,7 +8,7 @@ describe('Work with alerts', () => {
     beforeEach(() => {
         cy.reload()
     })
-    it.only('Alert', () => {
+    it('Alert', () => {
         // cy.get('#alert').click()
         // cy.on('window:alert', msg => {//on() pega eventos que ocorrem na nossa tela
         //     console.log(msg)
