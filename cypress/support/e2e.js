@@ -16,10 +16,22 @@
 // Import commands.js using ES2015 syntax:
 import './commands';
 require('cypress-xpath')
+import '@shelex/cypress-allure-plugin'
+// import '@shelex/cypress-allure-plugin';
+
+require('@shelex/cypress-allure-plugin');
 // import 'cypress-iframe';
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
 Cypress.SelectorPlayground.defaults({
-    selectorPrioritary: ['id', 'class', 'attributes', 'data-cy','data-test', 'data-testid','tag','nth-child','data-cw']
+    selectorPrioritary: ['data-cw','data-cy','id', 'class', 'attributes', 'data-test', 'data-testid','tag','nth-child',]
 })
+
+const allureWriter = require('@shelex/cypress-allure-plugin/writer');
+// import allureWriter from "@shelex/cypress-allure-plugin/writer";
+
+module.exports = (on, config) => {
+    allureWriter(on, config);
+    return config;
+};
