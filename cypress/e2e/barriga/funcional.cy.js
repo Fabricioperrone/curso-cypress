@@ -1,6 +1,6 @@
 /// <reference types="cypress"/>
 
-import loc from  '../../support/locators'
+import loc from '../../support/locators'
 import '../../support/commandsContas'
 
 describe('Should test at a funcional level', () => {
@@ -21,5 +21,12 @@ describe('Should test at a funcional level', () => {
             .type('Conta alterada')
         cy.get(loc.CONTAS.BTN_SALVAR).click()
         cy.get(loc.MESSAGE).should('contain', 'Conta atualizada com sucesso!')
+    })
+    it('should not create an account with same name', () => {
+        cy.acessarMenuConta()
+        
+        cy.get(loc.CONTAS.NOME).type('Conta alterada')
+        cy.get(loc.CONTAS.BTN_SALVAR).click()
+        cy.get(loc.MESSAGE).should('contain', 'code 400')
     })
 })
