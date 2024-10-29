@@ -13,7 +13,9 @@
   "dependencies": {
     "cypress": "^13.6.6",
     "cypress-xpath": "^2.0.1",
-    "iframe": "^1.0.0"
+    "dayjs": "^1.11.13",
+    "iframe": "^1.0.0",
+    "moment": "^2.30.1"
   },
   "devDependencies": {
     "@shelex/cypress-allure-plugin": "^2.40.1"

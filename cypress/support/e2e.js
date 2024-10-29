@@ -17,6 +17,8 @@
 import './commands';
 require('cypress-xpath')
 import '@shelex/cypress-allure-plugin'
+import moment from 'moment'
+//import dayjs from "dayjs"
 // import '@shelex/cypress-allure-plugin';
 
 require('@shelex/cypress-allure-plugin');
