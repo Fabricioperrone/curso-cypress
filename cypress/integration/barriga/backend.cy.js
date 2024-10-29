@@ -1,5 +1,8 @@
 /// <reference types="cypress"/>
 import moment from 'moment'
+import loc from '../../support/locators'
+import '../../support/commandsContas'
+import '../../support/commands'
 
 describe('Should test at a funcional level', () => {
     let token
@@ -66,30 +69,30 @@ describe('Should test at a funcional level', () => {
             expect(res.body.error).to.be.equal('Já existe uma conta com esse nome!')
         })
     })
-    it('Should create a transaction', () => {
-        // cy.getContaByName('Conta para movimentacoes')
-        //     .then(contaId => {
-        //         cy.request({
-        //             method: 'POST',
-        //             url: '/transacoes',
-        //             headers: { Authorization: `JWT ${token}` },
-        //             body: {
-        //                 conta_id: contaId,
-        //                 var dtTransacao = moment().subtract(1, "days").format("DD/MM/YYYY"),
-        //                 var dtPagamento = moment().format("DD/MM/YYYY"),
-        //                 descricao: "desc",
-        //                 envolvido: "inter",
-        //                 status: true,
-        //                 tipo: "REC",
-        //                 valor: "123"
-        //             }
-        //         }).as('response')
-        //     })
-        //     cy.get('@response').its('status').should('be.equal', 201)
-        //     cy.get('@response').its('body.id').should('exist')
+    it.only('Should create a transaction', () => {
+         cy.getContaByName('Conta para movimentacoes')
+             .then(contaId => {
+                 cy.request({
+                     method: 'POST',
+                     url: '/transacoes',
+                     headers: { Authorization: `JWT ${token}` },
+                     body: {
+                         conta_id: contaId,
+                          data_transacao : Cypress.moment().subtract(1, "days").format("DD/MM/YYYY"),
+                          data_pagamento : Cypress.moment().format("DD/MM/YYYY"),
+                         descricao: "desc",
+                         envolvido: "inter",
+                         status: true,
+                         tipo: "REC",
+                         valor: "123"
+                     }
+                 }).as('response')
+             })
+             cy.get('@response').its('status').should('be.equal', 201)
+             cy.get('@response').its('body.id').should('exist')
 
     })
-    it.only('Should get balance', () => {
+    it('Should get balance', () => {
         cy.request({
             url: '/saldo',
             method: 'GET',

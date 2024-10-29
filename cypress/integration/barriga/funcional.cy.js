@@ -2,6 +2,7 @@
 
 import loc from '../../support/locators'
 import '../../support/commandsContas'
+import '../../support/commands'
 
 describe('Should test at a funcional level', () => {
     beforeEach(() => {

@@ -1,7 +1,7 @@
 // import 'cypress-wait-until';
 // import 'cypress-iframe';
 // require('cypress-iframe');
-import loc from './locators'
+
 
 Cypress.Commands.add('clickAlert', (locator, message) => {
     cy.get(locator).click()
