@@ -69,7 +69,7 @@ describe('Should test at a funcional level', () => {
             expect(res.body.error).to.be.equal('Já existe uma conta com esse nome!')
         })
     })
-    it.only('Should create a transaction', () => {
+    it('Should create a transaction', () => {
          cy.getContaByName('Conta para movimentacoes')
              .then(contaId => {
                  cy.request({
@@ -140,7 +140,18 @@ describe('Should test at a funcional level', () => {
         })
 
     })
-    it('Should remove a transaction', () => {
-
+    it.only('Should remove a transaction', () => {
+        cy.request({
+            method: 'GET',
+            url: '/transacoes',
+            headers: { Authorization: `JWT ${token}` },
+            qs: { descricao: "Movimentacao para exclusao" }
+        }).then(res => {
+            cy.request({
+                url: `/transacoes/${res.body[0].id}`,
+                method: 'DELETE',
+                headers: { Authorization: `JWT ${token}` },
+            }).its('status').should('be.equal', 204)
+        })
     })
 })
